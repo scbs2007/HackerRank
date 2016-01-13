@@ -1,7 +1,8 @@
 package Practice;
 
-import java.util.Scanner;
-import java.util.regex.*;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TagContentExtractor{
    public static void main(String[] args){
@@ -11,24 +12,15 @@ public class TagContentExtractor{
       int flag;
       while(testCases>0){
          String line = in.nextLine();
-         Pattern p = Pattern.compile("<(.+)>[^><]*</\\1>");
+         Pattern p = Pattern.compile("<(.+)>([^><]+)</\\1>");
+         
+
           Matcher m = p.matcher(line);
           int i;
           flag =0;
           while(m.find())
           {
-              for(i =m.start(); line.charAt(i)!='>'; ++i)
-                  {}
-              ++i;
-              int fp =0;
-              for(; line.charAt(i)!='<'; ++i)
-                  {
-                  fp = 1;
-                  System.out.print(line.charAt(i));
-                  }
-              if(fp==0)
-                System.out.print("None");
-              System.out.println();
+              System.out.println(m.group(2));
               flag = 1;
           }
           if(flag ==0)
@@ -38,5 +30,4 @@ public class TagContentExtractor{
          testCases--;
       }
    }
-   
 }
