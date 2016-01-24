@@ -29,6 +29,17 @@ public class LongestSubstringPalindrome {
 				if(longest.length()>superlongest.length())
 					superlongest = longest;
 			}
+			lefti = i-1;
+			righti = i;
+			while(lefti >=0 && righti < length)
+			{
+				if(s.charAt(lefti--) != s.charAt(righti++))
+					break;
+				longest.delete(0, longest.length());
+				longest.append(s.substring(lefti+1, righti));
+				if(longest.length()>superlongest.length())
+					superlongest = longest;
+			}
 			
 			
 		}
